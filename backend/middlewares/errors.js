@@ -1,14 +1,14 @@
-export  default (err, req, res, next) => {
+export default (err, req, res, next) => {
   let error = {
     statusCode: err?.statusCode || 500,
-    message: err?.message || "Internal Server Error",
+    message: err?.message || 'Internal server error'
   }
 
   if(process.env.NODE_ENV === "DEVELOPMENT") {
     res.status(error.statusCode).json({
       message: error.message,
       error: err,
-      stack: err.stack,
+      stack: err?.stack,
     })
   }
 
@@ -17,4 +17,6 @@ export  default (err, req, res, next) => {
       message: error.message,
     })
   }
+
+  
 }
