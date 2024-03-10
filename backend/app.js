@@ -6,6 +6,13 @@ import errorMiddleware from './middlewares/errors.js'
 
 const app = express()
 
+//Handle Uncaught exceptions
+process.on("uncaughtException", (err) => {
+  console.log(`ERROR: ${err}`)
+  console.log("Shutting dow due to caught expection")
+  process.exit(1)
+})
+
 dotenv.config({ path: 'backend/config/config.env' })
 
 connectDatabase()
